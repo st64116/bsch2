@@ -1,11 +1,44 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "LiteDB/5.0.12": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/LiteDB.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/LiteDB.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "LiteDB/5.0.12": {
+      "sha512": "HaOjSIGS9BRm7dw42qcHd5NGYl5wdjsFB31pImt3QQNLKUNEmRAr7ADos5VsujwBc9c4otJgb+G6NA4MlzKyAw==",
+      "type": "package",
+      "path": "litedb/5.0.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "AppVeyorSettings.json",
+        "LICENSE",
+        "icon_64x64.png",
+        "lib/net45/LiteDB.dll",
+        "lib/net45/LiteDB.xml",
+        "lib/netstandard1.3/LiteDB.dll",
+        "lib/netstandard1.3/LiteDB.xml",
+        "lib/netstandard2.0/LiteDB.dll",
+        "lib/netstandard2.0/LiteDB.xml",
+        "litedb.5.0.12.nupkg.sha512",
+        "litedb.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "LiteDB >= 5.0.12"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\fialk\\.nuget\\packages\\": {}
@@ -13,11 +46,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fialk\\OneDrive\\Plocha\\portfolio\\github\\c#2Sem\\aplikaceZasobovani\\aplikaceZasobovani.csproj",
+      "projectUniqueName": "C:\\Users\\fialk\\OneDrive\\Plocha\\portfolio\\github\\c#2Sem\\bsch2\\aplikaceZasobovani\\aplikaceZasobovani.csproj",
       "projectName": "aplikaceZasobovani",
-      "projectPath": "C:\\Users\\fialk\\OneDrive\\Plocha\\portfolio\\github\\c#2Sem\\aplikaceZasobovani\\aplikaceZasobovani.csproj",
+      "projectPath": "C:\\Users\\fialk\\OneDrive\\Plocha\\portfolio\\github\\c#2Sem\\bsch2\\aplikaceZasobovani\\aplikaceZasobovani.csproj",
       "packagesPath": "C:\\Users\\fialk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fialk\\OneDrive\\Plocha\\portfolio\\github\\c#2Sem\\aplikaceZasobovani\\obj\\",
+      "outputPath": "C:\\Users\\fialk\\OneDrive\\Plocha\\portfolio\\github\\c#2Sem\\bsch2\\aplikaceZasobovani\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fialk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +78,12 @@
     "frameworks": {
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
+        "dependencies": {
+          "LiteDB": {
+            "target": "Package",
+            "version": "[5.0.12, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\aplikaceZasobovani",
+    "\\aplikaceZasobovani\\Core"
   ],
   "PreviewInSolutionExplorer": false
 }

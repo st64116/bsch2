@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "qO0twl/fJplg+bV8xci/pJ6utSn9yrMZK5DaKlc84TkEenRGe2lqfOfdQm3KHhe3mAws01k40ZXYNTyX8YTkLQ==",
+  "dgSpecHash": "5W9jUsnTyPRAGcijdq5Ju6UCTjBkTDRjrvZ1mChkzkCovouUrZlbHfz1HUEUUOUUG+QKgA5xgTvxc4v6T30Xpg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fialk\\OneDrive\\Plocha\\portfolio\\github\\c#2Sem\\aplikaceZasobovani\\aplikaceZasobovani.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\fialk\\OneDrive\\Plocha\\portfolio\\github\\c#2Sem\\bsch2\\aplikaceZasobovani\\aplikaceZasobovani.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fialk\\.nuget\\packages\\litedb\\5.0.12\\litedb.5.0.12.nupkg.sha512"
+  ],
   "logs": []
 }

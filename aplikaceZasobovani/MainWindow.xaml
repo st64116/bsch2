@@ -4,9 +4,92 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:aplikaceZasobovani"
+        xmlns:views="clr-namespace:aplikaceZasobovani.MVVM.View"
+        xmlns:viewModel="clr-namespace:aplikaceZasobovani.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Background="Transparent"
+        WindowStyle="none"
+        ResizeMode="CanResizeWithGrip"
+        Title="Aplikace zásobování" Height="500" Width="800">
 
-    </Grid>
+    <Border Background="#22383D" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Background="#0C1416" Grid.Row="0" Grid.Column="0" />
+            <Grid Background="#0C1416" MouseDown="Bar_MouseDown" Grid.Row="0" Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="Black">
+                    <Button Width="30"
+                            Height="30"
+                            Content="🗕"
+                            FontSize="20"
+                            Padding="0,0,0,5"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="BtnMin_Click">
+                    </Button>
+                    <Button Width="30"
+                            Height="30"
+                            Content="□"
+                            FontSize="20"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="BtnMax_Click"></Button>
+                    <Button Width="30"
+                            Height="30"
+                            Content="╳"
+                            FontSize="15"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="BtnClose_Click">
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <!--<Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>-->
+            <!--Background="#172529"-->
+            <StackPanel Width="100"
+                Background="#070A0A"
+                            Grid.Column="0" Grid.Row="1">
+                <Image Source="./images/truck-icon-light.png" Height="60" Margin="15,15,15,5"></Image>
+                <RadioButton Style="{StaticResource MenuBtnTheme}"
+                             Content="Sklady"
+                             Height="40"
+                             Foreground="White"
+                             FontSize="14"
+                             IsChecked="True"></RadioButton>
+                <RadioButton Style="{StaticResource MenuBtnTheme}"
+                             Content="Pobočky"
+                             Height="40"
+                             Foreground="White"
+                             FontSize="14"></RadioButton>
+                <RadioButton Style="{StaticResource MenuBtnTheme}"
+                             Content="Auta"
+                             Height="40"
+                             Foreground="White"
+                             FontSize="14"></RadioButton>
+                <RadioButton Style="{StaticResource MenuBtnTheme}"
+                             Content="Zaměstnanci"
+                             Height="40"
+                             Foreground="White"
+                             FontSize="14">
+                </RadioButton>
+            </StackPanel>
+            <!--<ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}"/>-->
+                <views:SkladView x:Name = "SkladViewControl" Grid.Column="1" Grid.Row="1"/>
+                <!--</Grid>-->
+        </Grid>
+    </Border>
 </Window>
