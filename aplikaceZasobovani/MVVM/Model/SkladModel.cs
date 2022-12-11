@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,12 +14,13 @@ namespace aplikaceZasobovani.MVVM.Model
 
     internal class Sklad : INotifyPropertyChanged
     {
-
         private string country;
         private string city;
         private string street;
         private string houseNumber;
         private string zip;
+
+        public ObjectId SkladId { get; set; }
 
         public string Country { get { return country; } set { country = value; RaisePropertyChanged(country); } }
 

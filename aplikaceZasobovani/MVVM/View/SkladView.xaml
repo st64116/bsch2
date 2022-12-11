@@ -54,19 +54,42 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="64.5"></ColumnDefinition>
+                <ColumnDefinition Width="84.5"></ColumnDefinition>
                 <ColumnDefinition Width="25.5"/>
             </Grid.ColumnDefinitions>
-            <ScrollViewer Grid.Column="0">
-                <ListBox ItemsSource="{Binding Sklady}" SelectedItem = "{Binding SelectedSklad}" Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Stretch"/>
+            <ScrollViewer Grid.Column="0" PreviewMouseWheel="ListViewScroll">
+                <ListBox ItemsSource="{Binding Sklady, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem = "{Binding SelectedSklad}"  Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Stretch"/>
             </ScrollViewer>
-            <Button Content = "Delete" 
-            Command = "{Binding DeleteCommand}"
-            HorizontalAlignment = "Center" 
-            VerticalAlignment = "Top" 
-            Width = "74"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"/>
+            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0,5,0" Width="95">
+                <TextBlock Text="Country:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="Country" Text="{Binding Path=SelectedSklad.Country,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+                <TextBlock Text="City:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="City"></TextBox>
+                <TextBlock Text="Street:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="Street"></TextBox>
+                <TextBlock Text="House number:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="HouseNumber"></TextBox>
+                <TextBlock Text="Zip:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="Zip"></TextBox>
+                <Button Content = "Add" 
+                Command = "{Binding AddCommand}"
+                HorizontalAlignment = "Center" 
+                VerticalAlignment = "Top"
+                Width = "95"
+                Margin="0,5,0,5"/>
+                <Button Content = "Delete" 
+                Command = "{Binding DeleteCommand}"
+                HorizontalAlignment = "Center" 
+                VerticalAlignment = "Top" 
+                Width = "95"
+                Margin="0,5,0,5"/>
+                <Button Content = "Update" 
+                Command = "{Binding UpdateCommand}"
+                HorizontalAlignment = "Center" 
+                VerticalAlignment = "Top" 
+                Width = "95"
+                Margin="0,5,0,5"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

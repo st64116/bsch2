@@ -22,8 +22,17 @@ namespace aplikaceZasobovani.MVVM.View
     {
         public SkladView()
         {
-            InitializeComponent();
+             InitializeComponent();
             //this.DataContext = new aplikaceZasobovani.MVVM.ViewModel.SkladViewModel();
         }
+
+        public void ListViewScroll(object sender, System.Windows.Input.MouseWheelEventArgs e) {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
+        }
+
+
+
     }
 }
