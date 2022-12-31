@@ -47,3 +47,9 @@ C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\
 C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\aplikaceZasobovani.csproj.CopyComplete
 C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\Theme\MenuBtnTheme.baml
 C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\App.baml
+C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\MVVM\View\AutaView.g.cs
+C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\MVVM\View\AutaView.baml
+C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\MVVM\View\PobockyView.g.cs
+C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\MVVM\View\ZamestnanciView.g.cs
+C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\MVVM\View\PobockyView.baml
+C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\obj\Debug\net6.0-windows\MVVM\View\ZamestnanciView.baml

@@ -23,23 +23,29 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text = "{Binding Path = Country, Mode = TwoWay}" 
-                        Width = "100" Margin = "3 5 3 5" Foreground="White" Grid.Column="0"/>
+                        Width = "100" Margin = "3 5 3 5" Foreground="White" Grid.Column="0" VerticalAlignment="Center" />
                 <TextBlock Text = "{Binding Path = City, Mode = TwoWay}" 
-                        Width = "100" Margin = "0 5 3 5" Foreground="White" Grid.Column="1"/>
+                        Width = "100" Margin = "0 5 3 5" Foreground="White" Grid.Column="1" VerticalAlignment="Center"/>
                 <TextBlock Text = "{Binding Path = Street, Mode = TwoWay}" 
-                        Margin = "0 5 3 5" Foreground="White" Grid.Column="2"/>
+                        Margin = "0 5 3 5" Foreground="White" Grid.Column="2" VerticalAlignment="Center"/>
                 <TextBlock Text = "{Binding Path = HouseNumber, Mode = TwoWay}" 
-                        Margin = "0 5 3 5" Foreground="White" Grid.Column="3"/>
+                        Margin = "0 5 3 5" Foreground="White" Grid.Column="3" VerticalAlignment="Center"/>
                 <TextBlock Text = "{Binding Path = Zip, Mode = TwoWay}" 
-                        Margin = "0 5 3 5" Foreground="White" Grid.Column="4"/>
-                <Button Content="Auta" Margin="3,0,3,0" Foreground="White"  Background="Transparent" BorderThickness="1" Grid.Column="5"></Button>
-                <Button Content="Zaměstnanci" Margin="3,0,3,0" Foreground="White"  Background="Transparent" BorderThickness="1" Grid.Column="6"></Button>
-                <Button Content="Pobočky" Margin="3,0,3,0" Foreground="White"  Background="Transparent" BorderThickness="1" Grid.Column="7"></Button>
+                        Margin = "0 5 3 5" Foreground="White" Grid.Column="4" VerticalAlignment="Center"/>
+                <Button Content="Auta"  Click= "AutaClick" Tag="{Binding SkladId}" Margin="3,0,3,0" Foreground="White"  Background="Transparent" BorderThickness="1" Grid.Column="5" VerticalAlignment="Center"></Button>
+                <Button Content="Zaměstnanci" Click= "ZamestnanciClick" Tag="{Binding SkladId}" Margin="3,0,3,0" Foreground="White"  Background="Transparent" BorderThickness="1" Grid.Column="6" VerticalAlignment="Center"></Button>
+                <Button Content="Pobočky" Click= "PobockyClick" Tag="{Binding SkladId}" Margin="3,0,3,0" Foreground="White"  Background="Transparent" BorderThickness="1" Grid.Column="7" VerticalAlignment="Center"></Button>
+                <TextBlock Text="{Binding Path=SkladId}" Foreground="White" Grid.Column="8" VerticalAlignment="Center"></TextBlock>
+
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModel:SkladViewModel/>
+    </UserControl.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -52,43 +58,77 @@
         <TextBlock Text="Sklady" FontSize="50" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBlock Text="{Binding Path=Sklady.Count}" Foreground="White"></TextBlock>
         <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <!--<RowDefinition Height="15"></RowDefinition>-->
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="74*"></ColumnDefinition>
+                <ColumnDefinition Width="41*"/>
                 <ColumnDefinition Width="84.5"></ColumnDefinition>
                 <ColumnDefinition Width="25.5"/>
             </Grid.ColumnDefinitions>
-            <ScrollViewer Grid.Column="0" PreviewMouseWheel="ListViewScroll">
-                <ListBox ItemsSource="{Binding Sklady, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem = "{Binding SelectedSklad}"  Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Stretch"/>
+            <!--<Grid Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Stretch" Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Země" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
+                <TextBlock Text="město" Grid.Column="1"  Foreground="White" HorizontalAlignment="Center" ></TextBlock>
+                <TextBlock Text="Ulice" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" ></TextBlock>
+                <TextBlock Text="číslo popisné" Grid.Column="3" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
+                <TextBlock Text="PSČ" Grid.Column="4" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
+                <TextBlock Text="Auta" Grid.Column="5" Foreground="White" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="Zaměstnanci" Grid.Column="6" Foreground="White" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="Pobočky" Grid.Column="7" Foreground="White" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="ID" Grid.Column="8" Foreground="White" HorizontalAlignment="Center"></TextBlock>
+            </Grid>-->
+            <Label Grid.Column="0" Grid.Row="1" Content="Loading..." Foreground="White" FontSize="20" Visibility="{Binding SkladyLoading, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Label>
+            <ScrollViewer Grid.Column="0" Grid.Row="1" Name="Seznam" HorizontalScrollBarVisibility="Visible" PreviewMouseWheel="ListViewScroll" Grid.ColumnSpan="2">
+                <ListBox ItemsSource="{Binding Sklady, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         SelectedItem = "{Binding SelectedSklad}"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         HorizontalContentAlignment="Stretch"/>
             </ScrollViewer>
-            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0,5,0" Width="95">
+            <StackPanel Grid.Column="2" Grid.Row="1"  Grid.ColumnSpan="2" Margin="8,0,8,0" Width="95">
                 <TextBlock Text="Country:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
-                <TextBox x:Name="Country" Text="{Binding Path=SelectedSklad.Country,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+                <TextBox x:Name="Country" Text="{Binding Path=SelectedSklad.Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" ></TextBox>
                 <TextBlock Text="City:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
-                <TextBox x:Name="City"></TextBox>
+                <TextBox x:Name="City" Text="{Binding Path=SelectedSklad.City,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
                 <TextBlock Text="Street:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
-                <TextBox x:Name="Street"></TextBox>
+                <TextBox x:Name="Street" Text="{Binding Path=SelectedSklad.Street,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <TextBlock Text="House number:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
-                <TextBox x:Name="HouseNumber"></TextBox>
+                <TextBox x:Name="HouseNumber" Text="{Binding Path=SelectedSklad.HouseNumber,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <TextBlock Text="Zip:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
-                <TextBox x:Name="Zip"></TextBox>
+                <TextBox x:Name="Zip" Text="{Binding Path=SelectedSklad.Zip,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <Button Content = "Add" 
                 Command = "{Binding AddCommand}"
                 HorizontalAlignment = "Center" 
                 VerticalAlignment = "Top"
                 Width = "95"
-                Margin="0,5,0,5"/>
+                Margin="0,5,0,5"
+                Click="Button_Click"/>
                 <Button Content = "Delete" 
                 Command = "{Binding DeleteCommand}"
                 HorizontalAlignment = "Center" 
                 VerticalAlignment = "Top" 
                 Width = "95"
                 Margin="0,5,0,5"/>
-                <Button Content = "Update" 
+                <!--<Button Content = "Update" 
                 Command = "{Binding UpdateCommand}"
                 HorizontalAlignment = "Center" 
                 VerticalAlignment = "Top" 
                 Width = "95"
-                Margin="0,5,0,5"/>
+                Margin="0,5,0,5"/>-->
             </StackPanel>
         </Grid>
     </Grid>

@@ -22,15 +22,15 @@ namespace aplikaceZasobovani.MVVM.Model
 
         public ObjectId SkladId { get; set; }
 
-        public string Country { get { return country; } set { country = value; RaisePropertyChanged(country); } }
+        public string Country { get { return country; } set { country = value; RaisePropertyChanged("Country"); } }
 
-        public string City { get { return city; } set { city = value; RaisePropertyChanged(city); } }
+        public string City { get { return city; } set { city = value; RaisePropertyChanged("City"); } }
 
-        public string Street { get { return street; } set { street = value; RaisePropertyChanged(street); } }
+        public string Street { get { return street; } set { street = value; RaisePropertyChanged("Street"); } }
 
-        public string HouseNumber { get { return houseNumber; } set { houseNumber = value; RaisePropertyChanged(houseNumber); } }
+        public string HouseNumber { get { return houseNumber; } set { houseNumber = value; RaisePropertyChanged("HouseNumber"); } }
 
-        public string Zip { get { return zip; } set { zip = value; RaisePropertyChanged(zip); } }
+        public string Zip { get { return zip; } set { zip = value; RaisePropertyChanged("Zip"); } }
 
         public Sklad(string country, string city, string street, string houseNumber, string zip)
         {
@@ -39,10 +39,10 @@ namespace aplikaceZasobovani.MVVM.Model
             Street = street;
             HouseNumber = houseNumber;
             Zip = zip;
+            //Auta = new List<Auto>();
+            //Zamestnanci = new List<Zamestnanec>();
+            //Pobocky= new List<Pobocka>();
         }
-        //List<Auto> Auta { get; set; }
-        //List<Zamestnanec> Zamestnanec { get; set; }
-        //List<Pobocka> Pobocky { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\fialk\OneDrive\Plocha\portfolio\github\c#2Sem\bsch2\aplikaceZasobovani\App.xaml
-3306040831
+6-1801992766
 
-13-59513789
+23-1386677443
 195184542073
-MainWindow.xaml;MVVM\View\SkladView.xaml;Theme\MenuBtnTheme.xaml;
+MainWindow.xaml;MVVM\View\AutaView.xaml;MVVM\View\PobockyView.xaml;MVVM\View\SkladView.xaml;MVVM\View\ZamestnanciView.xaml;Theme\MenuBtnTheme.xaml;
 
 False
 

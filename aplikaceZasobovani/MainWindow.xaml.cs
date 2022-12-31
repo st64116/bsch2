@@ -20,6 +20,7 @@ namespace aplikaceZasobovani
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -59,6 +60,11 @@ namespace aplikaceZasobovani
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void ContentControl_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
         }
     }
 }

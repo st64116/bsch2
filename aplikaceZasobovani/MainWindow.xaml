@@ -12,6 +12,13 @@
         ResizeMode="CanResizeWithGrip"
         Title="Aplikace zásobování" Height="500" Width="800">
 
+    <Window.DataContext>
+        <viewModel:MainViewModel></viewModel:MainViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <viewModel:Menu x:Key="Menu"/>
+    </Window.Resources>
+
     <Border Background="#22383D" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -69,27 +76,49 @@
                              Height="40"
                              Foreground="White"
                              FontSize="14"
-                             IsChecked="True"></RadioButton>
+                             IsChecked="True"
+                             Command="{Binding Source={x:Static viewModel:Menu.SetSkladyViewCommand}}"></RadioButton>
                 <RadioButton Style="{StaticResource MenuBtnTheme}"
                              Content="Pobočky"
                              Height="40"
                              Foreground="White"
-                             FontSize="14"></RadioButton>
+                             FontSize="14"
+                             Command="{Binding Source={x:Static viewModel:Menu.SetPobockyViewCommand}}"></RadioButton>
                 <RadioButton Style="{StaticResource MenuBtnTheme}"
                              Content="Auta"
                              Height="40"
                              Foreground="White"
-                             FontSize="14"></RadioButton>
+                             FontSize="14"
+                             Command="{Binding Source={x:Static viewModel:Menu.SetAutaViewCommand}}"></RadioButton>
                 <RadioButton Style="{StaticResource MenuBtnTheme}"
                              Content="Zaměstnanci"
                              Height="40"
                              Foreground="White"
-                             FontSize="14">
+                             FontSize="14"
+                             Command="{Binding Source={x:Static viewModel:Menu.SetZamestnanciViewCommand}}">
                 </RadioButton>
             </StackPanel>
             <!--<ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}"/>-->
-                <views:SkladView x:Name = "SkladViewControl" Grid.Column="1" Grid.Row="1"/>
-                <!--</Grid>-->
+
+            <ContentControl Content="{Binding Source={StaticResource Menu},Path=CurrentViewModel,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewModel:SkladViewModel}">
+                        <views:SkladView ></views:SkladView>
+                    </DataTemplate>                    
+                    <DataTemplate DataType="{x:Type viewModel:AutaViewModel}">
+                        <views:AutaView></views:AutaView>
+                    </DataTemplate>                    
+                    <DataTemplate DataType="{x:Type viewModel:ZamestnanciViewModel}">
+                        <views:ZamestnanciView></views:ZamestnanciView>
+                    </DataTemplate>                    
+                    <DataTemplate DataType="{x:Type viewModel:PobockyViewModel}">
+                        <views:PobockyView></views:PobockyView>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+            <!--<views:SkladView x:Name = "SkladViewControl" Grid.Column="1" Grid.Row="1"/>-->
+
+            <!--</Grid>-->
         </Grid>
     </Border>
 </Window>

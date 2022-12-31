@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="aplikaceZasobovani.MVVM.View.AutaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:data="clr-namespace:aplikaceZasobovani.MVVM.Model"
+             xmlns:local="clr-namespace:aplikaceZasobovani.MVVM.View"
+             xmlns:viewModel="clr-namespace:aplikaceZasobovani.MVVM.ViewModel"
+             xmlns:vml="clr-namespace:aplikaceZasobovani.MVVM.VML"
+             vml:ViewModelLocator.AutoHookedUpViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType = "{x:Type data:Auto}">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="11*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="0*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text = "{Binding Path = AutoId}" 
+                        Width = "100" Margin = "12,5,13,0" Foreground="White" Grid.Column="0" VerticalAlignment="Top" Grid.RowSpan="3" />
+                <TextBlock Text = "{Binding Path = Brand, Mode = TwoWay}" 
+                        Width = "100" Margin = "11,5,14,0" Foreground="White" Grid.Column="1" VerticalAlignment="Top" Grid.RowSpan="3"/>
+                <TextBlock Text = "{Binding Path = Spz, Mode = TwoWay}" 
+                        Margin = "0,5,3,0" Foreground="White" Grid.Column="2" VerticalAlignment="Top" Grid.RowSpan="3"/>
+                <TextBlock Text = "{Binding Path = ZamestnanecId, Mode = TwoWay}" 
+                        Margin = "0,5,3,0" Foreground="White" Grid.Column="3" VerticalAlignment="Top" Grid.RowSpan="3"/>
+                <TextBlock Text="{Binding Path=SkladId}" Foreground="White" Grid.Column="4" VerticalAlignment="Top" Margin="0,5,0,0" Grid.RowSpan="3"></TextBlock>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModel:AutaViewModel/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Auta" FontSize="50" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding Path=Auta.Count}" Foreground="White"></TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="84.5"></ColumnDefinition>
+                <ColumnDefinition Width="25.5"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Loading..." Foreground="White" FontSize="20" Visibility="{Binding SkladyLoading, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"></Label>
+            <Label Content="Neni vybrán sklad!" Foreground="White" FontSize="20" Margin="0 30 0 0" Visibility="{Binding SkladNotSelected, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"></Label>
+            <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Visible" PreviewMouseWheel="ListViewScroll">
+                <ListBox ItemsSource="{Binding Auta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         SelectedItem = "{Binding SelectedAuto}"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         HorizontalContentAlignment="Stretch"/>
+            </ScrollViewer>
+            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0,5,0" Width="95">
+                <TextBlock Text="Sklad:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <ComboBox ItemsSource="{Binding Sklady, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
+                Width = "95"
+                Margin="0,5,0,5"
+                SelectedItem="{Binding SelectedSklad, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Brand:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="Brand" Text="{Binding Path=SelectedAuto.Brand,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+                <TextBlock Text="Spz:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="Spz" Text="{Binding Path=SelectedAuto.Spz,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock Text="Zamestnanec Id:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="Zamestnanec" Text="{Binding Path=SelectedAuto.ZamestnanecId,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock Text="Sklad:" Foreground="white" HorizontalAlignment="Center"></TextBlock>
+                <TextBox x:Name="Sklad" Text="{Binding Path=SelectedAuto.SkladId}" IsReadOnly="True"></TextBox>
+                <Button Content = "Add" 
+                Command = "{Binding AddCommand}"
+                HorizontalAlignment = "Center" 
+                VerticalAlignment = "Top"
+                Width = "95"
+                Margin="0,5,0,5"/>
+                <Button Content = "Delete" 
+                Command = "{Binding DeleteCommand}"
+                HorizontalAlignment = "Center" 
+                VerticalAlignment = "Top" 
+                Width = "95"
+                Margin="0,5,0,5"/>
+                <!--<Button Content = "Update" 
+                Command = "{Binding UpdateCommand}"
+                HorizontalAlignment = "Center" 
+                VerticalAlignment = "Top" 
+                Width = "95"
+                Margin="0,5,0,5"/>-->
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
